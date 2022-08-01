@@ -9,8 +9,8 @@
           - python3
 
     - name: command bashrc
-      command:
-        cmd: "echo 'set -o vi' >> .bashrc && source /home/vagrant/.bashrc"
+      shell:
+        cmd: "echo 'set -o vi' >> /home/vagrant/.bashrc"
 
     - name: create vimrc, echo doesn't work... for the right reasons, I'm sure.
       file:
@@ -18,10 +18,11 @@
         path: /home/vagrant/.vimrc
 
     - name: command vimrc
-      command:
+      shell:
         cmd: "{{ item }}"
       loop:
-        - "echo 'autocmd Filetype yaml ai sw=2 ts=2 et' >> /home/vagrant/.vimrc"
+        - "echo 'filetype plugin on' >> /home/vagrant/.vimrc"
+        - "echo 'autocmd Filetype yaml setlocal ai sw=2 ts=2 et' >> /home/vagrant/.vimrc"
         - "echo 'set number relativenumber' >> /home/vagrant/.vimrc"
 
     - name: chown
@@ -41,7 +42,7 @@
       loop:
         #        - "apt-get remove docker docker-engine docker.io containerd runc"
         - "apt-get update"
-        - "apt-get install ca-certificates curl gnupg lsb-release"
+        - "apt-get -y install ca-certificates curl gnupg lsb-release"
         - "mkdir -p /etc/apt/keyrings"
         - "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg"
         - 'echo  "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu focal stable"| sudo tee /etc/apt/sources.list.d/docker.list > /dev/null'
