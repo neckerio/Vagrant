@@ -6,11 +6,8 @@
 ---
 
 ### Implementation
-* [Vagrantfile](Vagrantfile)
-* [cka.yml](cka.yml)
 
 ### Useful Information
-* using a quick and dirty ansible startup script with a premade vagrant box
 
 ### Useful Commands
 
@@ -22,5 +19,6 @@
 ---
 
 ## Notes
+* Docker install shell commands taken from [Docker Docs](https://docs.docker.com/engine/install/ubuntu/)
 
 ---
